@@ -313,7 +313,13 @@
     "favorite": "Add to favourites",
     "unfavorite": "Remove from favourites",
     "favorites_section": "Favourites",
-    "opened_section": "Opened"
+    "opened_section": "Opened",
+    "expiry_filter_label": "Expiry filter",
+    "expiry_filter_any": "Any date",
+    "expiry_filter_expired": "Expired",
+    "expiry_filter_7": "Within 7 days",
+    "expiry_filter_30": "Within 30 days",
+    "expiry_filter_empty": "Nothing here expires in this window."
   },
   "scan": {
     "title": "Scan",

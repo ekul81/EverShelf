@@ -313,7 +313,13 @@
     "favorite": "Zu Favoriten hinzufügen",
     "unfavorite": "Aus Favoriten entfernen",
     "favorites_section": "Favoriten",
-    "opened_section": "Geöffnet"
+    "opened_section": "Geöffnet",
+    "expiry_filter_label": "Ablauffilter",
+    "expiry_filter_any": "Jedes Datum",
+    "expiry_filter_expired": "Abgelaufen",
+    "expiry_filter_7": "In 7 Tagen",
+    "expiry_filter_30": "In 30 Tagen",
+    "expiry_filter_empty": "In diesem Zeitraum läuft hier nichts ab."
   },
   "scan": {
     "title": "Scannen",

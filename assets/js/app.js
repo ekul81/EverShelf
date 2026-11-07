@@ -1403,7 +1403,7 @@ async function discoverScaleGateway() {
 }
 
 // ===== i18n TRANSLATION SYSTEM =====
-const _I18N_VERSION = '20261025a'; // bump when translations change
+const _I18N_VERSION = '20261107a'; // bump when translations change
 let _i18nStrings = null;   // current language translations (flat)
 let _i18nFallback = null;  // English fallback (flat) — never Italian for other locales
 let _i18nLoadedVersion = null;
@@ -10419,7 +10419,21 @@ function renderInventory(items, options = {}) {
     if (!_knownTags.length) { _loadKnownTags(); _loadFamilies(); }
     _renderInventoryTagFilter();
     const container = document.getElementById('inventory-list');
-    const visible = _inventoryVisibleItems(items);
+    let visible = _inventoryVisibleItems(items);
+    if (_inventoryExpiryFilter) {
+        // An expiry window is a "what do I eat first" list: one flat list, soonest first.
+        const qas = document.getElementById('quick-access-section');
+        if (qas) qas.style.display = 'none';
+        visible = _inventoryApplyExpiryFilter(visible);
+        if (visible.length === 0) {
+            container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📅</div><p>${t('inventory.expiry_filter_empty')}</p></div>`;
+            return;
+        }
+        container.innerHTML = visible.map(item => renderInventoryItem(item)).join('');
+        _refineCategoryBadgesAsync();
+        _initInventoryRowSwipe(container);
+        return;
+    }
     if (visible.length === 0) {
         container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📭</div><p>${t('inventory.empty_text')}</p></div>`;
         return;
@@ -10568,6 +10582,49 @@ async function _refineCategoryBadgesAsync() {
             }
         } catch (_) { /* network error — leave as 'altro' */ }
     }
+}
+
+/**
+ * Inventory expiry window: '' (any date), 'expired', '7' or '30'.
+ * A window counts from today: '7' = expires today … in 7 days, '30' = today … in 30 days
+ * (so it also holds the 7-day items: each tab is a whole list on its own). Items with
+ * no expiry date are never in a window. Combines with the location tabs, the tag
+ * filter and the search box.
+ */
+let _inventoryExpiryFilter = '';
+
+function _inventoryMatchesExpiryWindow(item, win) {
+    if (!win) return true;
+    if (!item?.expiry_date) return false;
+    const days = daysUntilExpiry(item.expiry_date);
+    if (!Number.isFinite(days)) return false;
+    if (win === 'expired') return days < 0;
+    const limit = parseInt(win, 10);
+    return days >= 0 && days <= limit;
+}
+
+/** Items inside the active expiry window, soonest expiry first (name breaks ties). */
+function _inventoryApplyExpiryFilter(items) {
+    const win = _inventoryExpiryFilter;
+    return items
+        .filter(i => _inventoryMatchesExpiryWindow(i, win))
+        .sort((a, b) => {
+            const d = daysUntilExpiry(a.expiry_date) - daysUntilExpiry(b.expiry_date);
+            if (d !== 0) return d;
+            return (a.name || '').localeCompare(b.name || '', _collationLocale());
+        });
+}
+
+function filterExpiry(win) {
+    _inventoryExpiryFilter = ['expired', '7', '30'].includes(win) ? win : '';
+    document.querySelectorAll('#expiry-tabs .tab').forEach(btn => {
+        const on = btn.dataset.exp === _inventoryExpiryFilter;
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    // filterInventory() re-renders with the search query (if any) and restores the
+    // quick-access row when both the search and the expiry window are cleared.
+    filterInventory();
 }
 
 function filterLocation(loc) {
@@ -11688,7 +11745,7 @@ function _loadZbarVendor() {
         };
         const loadPoly = () => {
             const s2 = document.createElement('script');
-            s2.src = 'assets/vendor/zbar/polyfill.js?v=20261025a';
+            s2.src = 'assets/vendor/zbar/polyfill.js?v=20261107a';
             s2.onload = done;
             s2.onerror = () => reject(new Error('ZBar polyfill load failed'));
             document.head.appendChild(s2);
@@ -11698,7 +11755,7 @@ function _loadZbarVendor() {
             return;
         }
         const s1 = document.createElement('script');
-        s1.src = 'assets/vendor/zbar/index.js?v=20261025a';
+        s1.src = 'assets/vendor/zbar/index.js?v=20261107a';
         s1.onload = () => {
             if (window.zbarWasm && zbarWasm.setModuleArgs) {
                 zbarWasm.setModuleArgs({ locateFile: (file) => 'assets/vendor/zbar/' + file });

@@ -313,7 +313,13 @@
     "favorite": "Aggiungi ai preferiti",
     "unfavorite": "Rimuovi dai preferiti",
     "favorites_section": "Preferiti",
-    "opened_section": "Aperti"
+    "opened_section": "Aperti",
+    "expiry_filter_label": "Filtro scadenza",
+    "expiry_filter_any": "Qualsiasi scadenza",
+    "expiry_filter_expired": "Scaduti",
+    "expiry_filter_7": "Entro 7 giorni",
+    "expiry_filter_30": "Entro 30 giorni",
+    "expiry_filter_empty": "Nessun prodotto scade in questo periodo."
   },
   "scan": {
     "title": "Scansiona",

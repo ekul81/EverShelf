@@ -1583,8 +1583,9 @@ body.server-offline .bottom-nav {
     color: var(--primary);
 }
 
-/* ===== LOCATION TABS ===== */
-.location-tabs {
+/* ===== LOCATION TABS (and the expiry filter row under them) ===== */
+.location-tabs,
+.expiry-tabs {
     display: flex;
     gap: 6px;
     overflow-x: auto;
@@ -1594,7 +1595,8 @@ body.server-offline .bottom-nav {
     scrollbar-width: none;
 }
 
-.location-tabs::-webkit-scrollbar { display: none; }
+.location-tabs::-webkit-scrollbar,
+.expiry-tabs::-webkit-scrollbar { display: none; }
 
 .tab {
     background: var(--bg-card);

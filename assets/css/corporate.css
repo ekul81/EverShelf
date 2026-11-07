@@ -194,6 +194,7 @@ h1, h2, h3, h4,
 }
 
 .location-tabs,
+.expiry-tabs,
 .shopping-tabs {
     gap: var(--es-space-sm);
     margin-bottom: var(--es-space-md);

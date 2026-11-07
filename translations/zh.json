@@ -313,7 +313,13 @@
     "favorite": "添加到收藏",
     "unfavorite": "取消收藏",
     "favorites_section": "收藏",
-    "opened_section": "已开封"
+    "opened_section": "已开封",
+    "expiry_filter_label": "过期筛选",
+    "expiry_filter_any": "任意日期",
+    "expiry_filter_expired": "已过期",
+    "expiry_filter_7": "7天内",
+    "expiry_filter_30": "30天内",
+    "expiry_filter_empty": "此期间内没有到期的物品。"
   },
   "scan": {
     "title": "扫描",

@@ -313,7 +313,13 @@
     "favorite": "Añadir a favoritos",
     "unfavorite": "Quitar de favoritos",
     "favorites_section": "Favoritos",
-    "opened_section": "Abiertos"
+    "opened_section": "Abiertos",
+    "expiry_filter_label": "Filtro de caducidad",
+    "expiry_filter_any": "Cualquier fecha",
+    "expiry_filter_expired": "Caducados",
+    "expiry_filter_7": "En 7 días",
+    "expiry_filter_30": "En 30 días",
+    "expiry_filter_empty": "Nada caduca aquí en este periodo."
   },
   "scan": {
     "title": "Escáner",

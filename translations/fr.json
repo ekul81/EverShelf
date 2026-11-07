@@ -313,7 +313,13 @@
     "favorite": "Ajouter aux favoris",
     "unfavorite": "Retirer des favoris",
     "favorites_section": "Favoris",
-    "opened_section": "Ouverts"
+    "opened_section": "Ouverts",
+    "expiry_filter_label": "Filtre de péremption",
+    "expiry_filter_any": "Toutes dates",
+    "expiry_filter_expired": "Périmés",
+    "expiry_filter_7": "Sous 7 jours",
+    "expiry_filter_30": "Sous 30 jours",
+    "expiry_filter_empty": "Rien ici n'expire dans cette période."
   },
   "scan": {
     "title": "Scanner",

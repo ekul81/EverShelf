@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Heavy items** — Receipt OCR, voice commands, geofencing, AGP 9 / SDK 37 (separate projects).
 - **CI INDEX drift job** — `regen-code-index` in `.github/workflows/ci.yml` needs a `workflow`-scoped PAT to push; until then run `bash scripts/gen-code-index.sh` locally (see `todo/CI-INDEX-NOTE.md`).
 
+## [Unreleased]
+
+### Added — expiry filter on the pantry list
+The pantry list can now show only what is about to expire. A second row of tabs
+under the location tabs offers **Any date · Expired · Within 7 days · Within 30 days**.
+- A window counts from today: *Within 7 days* holds today … day 7, *Within 30 days*
+  today … day 30 (so it also holds the 7-day items — each tab is a whole list on its
+  own, never two lists on one screen). *Expired* is everything past its date;
+  expires-today is not expired. Items without an expiry date are in no window.
+- The filtered list is flat and sorted by expiry, soonest first, and it combines
+  with the location tabs, the tag filter and the search box.
+- Uses the same date as the row badge (`expiry_date`, `daysUntilExpiry()`); no API
+  or database change. Six new `inventory.expiry_filter_*` strings in all locales.
+
 ## [1.16.16] - 2026-10-25
 
 ### The setup wizard obeys the server (not every new browser)
