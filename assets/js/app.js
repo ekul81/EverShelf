@@ -1403,7 +1403,7 @@ async function discoverScaleGateway() {
 }
 
 // ===== i18n TRANSLATION SYSTEM =====
-const _I18N_VERSION = '20261025a'; // bump when translations change
+const _I18N_VERSION = '20261108a'; // bump when translations change
 let _i18nStrings = null;   // current language translations (flat)
 let _i18nFallback = null;  // English fallback (flat) — never Italian for other locales
 let _i18nLoadedVersion = null;
@@ -11592,6 +11592,7 @@ async function initScanner() {
         video.srcObject = stream;
         await video.play().catch(() => {});
         if (viewport) viewport.classList.remove('scanner-off');
+        document.getElementById('page-scan')?.classList.remove('camera-unavailable');
         scanLog(`Video playing — videoWidth: ${video.videoWidth}, videoHeight: ${video.videoHeight}`);
 
         // Apply fixed 2x zoom
@@ -11616,18 +11617,12 @@ async function initScanner() {
         scanLog(`CAMERA ERROR: ${err.name}: ${err.message}`);
         console.error('Camera error:', err);
         if (viewport) viewport.classList.add('scanner-off');
-        const result = document.getElementById('scan-result');
-        if (result) {
-            result.innerHTML = `
-                <div class="scan-result-sheet-head">
-                    <span class="scan-result-sheet-title">${escapeHtml(t('error.camera'))}</span>
-                    <button type="button" class="scan-result-sheet-close" onclick="_dismissAiMatchPanel()" aria-label="${escapeAttr(t('btn.close') || 'Close')}">✕</button>
-                </div>
-                <p style="color: var(--danger)">${escapeHtml(t('error.camera'))}</p>
-                <p style="font-size:0.85rem; color: var(--text-light); margin-top:8px">${escapeHtml(t('scanner.camera_error_hint'))}</p>
-            `;
-            result.style.display = 'block';
-        }
+        // No camera (plain HTTP, permission denied, no device, or switched off on
+        // purpose): hide the dead viewport and say so in ONE line above the actions,
+        // so 🔍 Search / ✏️ Manual stay reachable. The old full-screen sheet covered
+        // them, and its ✕ called initScanner() again, which failed again and redrew
+        // the sheet — a household without a camera could never add an item by hand.
+        document.getElementById('page-scan')?.classList.add('camera-unavailable');
     }
 }
 
@@ -11688,7 +11683,7 @@ function _loadZbarVendor() {
         };
         const loadPoly = () => {
             const s2 = document.createElement('script');
-            s2.src = 'assets/vendor/zbar/polyfill.js?v=20261025a';
+            s2.src = 'assets/vendor/zbar/polyfill.js?v=20261108a';
             s2.onload = done;
             s2.onerror = () => reject(new Error('ZBar polyfill load failed'));
             document.head.appendChild(s2);
@@ -11698,7 +11693,7 @@ function _loadZbarVendor() {
             return;
         }
         const s1 = document.createElement('script');
-        s1.src = 'assets/vendor/zbar/index.js?v=20261025a';
+        s1.src = 'assets/vendor/zbar/index.js?v=20261108a';
         s1.onload = () => {
             if (window.zbarWasm && zbarWasm.setModuleArgs) {
                 zbarWasm.setModuleArgs({ locateFile: (file) => 'assets/vendor/zbar/' + file });

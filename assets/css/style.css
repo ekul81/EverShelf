@@ -3347,6 +3347,16 @@ body:has(#page-scan.active) .app-content {
     padding: 16px;
     box-shadow: var(--shadow);
 }
+/* Camera cannot start: drop the black viewport, keep one line of text + the actions. */
+.scan-camera-note { display: none; }
+#page-scan.camera-unavailable #scanner-viewport { display: none; }
+#page-scan.camera-unavailable .scan-camera-note {
+    display: block;
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-align: center;
+}
 #page-scan .scan-result {
     position: absolute;
     inset: 0;

@@ -2133,7 +2133,7 @@
     "capture_btn": "📸 Aufnehmen",
     "capture_photo_btn": "📸 Foto aufnehmen",
     "retake_btn": "🔄 Erneut aufnehmen",
-    "camera_error_hint": "Stelle sicher, dass du HTTPS verwendest und Kameraberechtigungen erteilt hast.<br>Du kannst den Barcode manuell eingeben oder die KI-Identifikation verwenden.",
+    "camera_unavailable_line": "Keine Kamera: 🔍 Suche oder ✏️ Manuell.",
     "no_barcode": "Kein Barcode",
     "save_new_btn": "🆕 Keines davon — als neu speichern",
     "expiry_found": "Datum gefunden",

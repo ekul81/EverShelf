@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Heavy items** — Receipt OCR, voice commands, geofencing, AGP 9 / SDK 37 (separate projects).
 - **CI INDEX drift job** — `regen-code-index` in `.github/workflows/ci.yml` needs a `workflow`-scoped PAT to push; until then run `bash scripts/gen-code-index.sh` locally (see `todo/CI-INDEX-NOTE.md`).
 
+## [Unreleased]
+
+### Fixed — no camera no longer locks the Scan screen
+Without a usable camera (plain HTTP, permission denied, no device, or switched off
+on purpose) the Scan screen drew a full-screen "Cannot access camera" sheet over
+🔍 Search and ✏️ Manual. Its ✕ called `initScanner()` again, which failed again and
+redrew the sheet, so a household without a camera could never add an item by hand.
+The hint also printed a literal `<br>` (the string went through `escapeHtml`).
+- The dead viewport is hidden and one line of text takes its place:
+  "No camera: use 🔍 Search or ✏️ Manual." (`scanner.camera_unavailable_line`, six
+  locales). Search and Manual stay usable; the viewport comes back as soon as a
+  camera stream starts.
+- `scanner.camera_error_hint` (the only user of that `<br>`) is gone from all locales.
+
 ## [1.16.16] - 2026-10-25
 
 ### The setup wizard obeys the server (not every new browser)

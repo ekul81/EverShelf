@@ -2133,7 +2133,7 @@
     "capture_btn": "📸 Scatta",
     "capture_photo_btn": "📸 Scatta Foto",
     "retake_btn": "🔄 Riscatta",
-    "camera_error_hint": "Assicurati di usare HTTPS e di aver concesso i permessi della fotocamera.<br>Puoi inserire il barcode manualmente o usare l'identificazione AI.",
+    "camera_unavailable_line": "Niente fotocamera: usa 🔍 Cerca o ✏️ Manuale.",
     "no_barcode": "Senza barcode",
     "save_new_btn": "🆕 Non è nessuno di questi — salva come nuovo",
     "expiry_found": "Data trovata",

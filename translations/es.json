@@ -2133,7 +2133,7 @@
     "capture_btn": "📸 Capturar",
     "capture_photo_btn": "📸 Sacar foto",
     "retake_btn": "🔄 Repetir",
-    "camera_error_hint": "Asegúrate de usar HTTPS y haber concedido los permisos de cámara.<br>Puedes introducir el código de barras manualmente o usar la identificación IA.",
+    "camera_unavailable_line": "Sin cámara: usa 🔍 Buscar o ✏️ Manual.",
     "no_barcode": "Sin código de barras",
     "save_new_btn": "🆕 Ninguno de estos — guardar como nuevo",
     "expiry_found": "Fecha encontrada",
