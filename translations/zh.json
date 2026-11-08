@@ -2139,7 +2139,7 @@
     "capture_btn": "📸 拍摄",
     "capture_photo_btn": "📸 拍照",
     "retake_btn": "🔄 重新拍摄",
-    "camera_error_hint": "请确认正在使用 HTTPS，并已授予摄像头权限。<br>你也可以手动输入条形码或使用 AI 识别。",
+    "camera_unavailable_line": "摄像头不可用：请用 🔍 搜索 或 ✏️ 手动。",
     "no_barcode": "无条形码",
     "save_new_btn": "🆕 都不是——保存为新商品",
     "expiry_found": "已识别日期",

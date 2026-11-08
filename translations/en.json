@@ -2139,7 +2139,7 @@
     "capture_btn": "📸 Capture",
     "capture_photo_btn": "📸 Take Photo",
     "retake_btn": "🔄 Retake",
-    "camera_error_hint": "Ensure you use HTTPS and have granted camera permissions.<br>You can enter the barcode manually or use AI identification.",
+    "camera_unavailable_line": "No camera: use 🔍 Search or ✏️ Manual.",
     "no_barcode": "No barcode",
     "save_new_btn": "🆕 None of these — save as new",
     "expiry_found": "Date found",

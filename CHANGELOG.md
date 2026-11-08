@@ -27,6 +27,18 @@ under the location tabs offers **Any date · Expired · Within 7 days · Within 
 - Uses the same date as the row badge (`expiry_date`, `daysUntilExpiry()`); no API
   or database change. Six new `inventory.expiry_filter_*` strings in all locales.
 
+### Fixed — no camera no longer locks the Scan screen
+Without a usable camera (plain HTTP, permission denied, no device, or switched off
+on purpose) the Scan screen drew a full-screen "Cannot access camera" sheet over
+🔍 Search and ✏️ Manual. Its ✕ called `initScanner()` again, which failed again and
+redrew the sheet, so a household without a camera could never add an item by hand.
+The hint also printed a literal `<br>` (the string went through `escapeHtml`).
+- The dead viewport is hidden and one line of text takes its place:
+  "No camera: use 🔍 Search or ✏️ Manual." (`scanner.camera_unavailable_line`, six
+  locales). Search and Manual stay usable; the viewport comes back as soon as a
+  camera stream starts.
+- `scanner.camera_error_hint` (the only user of that `<br>`) is gone from all locales.
+
 ## [1.16.16] - 2026-10-25
 
 ### The setup wizard obeys the server (not every new browser)
